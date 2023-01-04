@@ -1,0 +1,113 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  .brochure {
+    display: flex;
+    height: 100vh;
+	max-height:100vh;
+	align-items: center;
+    justify-content: center;
+  }
+  .left-panel {
+    height: 100%;
+    visibility: visible; /* hide left panel by default */
+	transform:rotateY(-180deg);
+	transform-style: preserve-3d;
+	transition: 1s;
+	/*backface-visibility: hidden;*/
+	transform-origin:right;
+  }
+  .center-panel {
+    height: 100%;
+  }
+  .right-panel {
+    height: 100%;
+    visibility: visible; /* hide right panel by default */
+	transform:rotateY(-180deg);
+	transform-style: preserve-3d;
+	transition: 1s;
+	/*backface-visibility: hidden;*/
+	transform-origin:left;
+  }
+  .left-panel:after {
+    content: '';
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-transform: rotateY( 180deg );
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+	background-image:url("FechadoEsquerda.png");
+	background-size: contain;
+    background-repeat: no-repeat;
+}
+  
+  .right-panel:after {
+    content: '';
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-transform: rotateY( 180deg );
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+	background-image:url("FechadoDireita.png");
+	background-size: contain;
+    background-repeat: no-repeat;
+}
+  
+  img {
+    height: 100%;
+    width: 100%;
+	max-width:100%;
+	max-height:100%;
+    object-fit: contain;
+  }
+</style>
+<body>
+<div class="brochure" onclick="togglePanels()">
+  <div class="left-panel">
+    <img src="Esquerda.png">
+  </div>
+  <div class="center-panel">
+    <img src="Centro.png">
+  </div>
+  <div class="right-panel">
+    <img src="Direita.png">
+  </div>
+</div>
+
+<script>
+  let isFolded = true; // keep track of whether the brochure is folded or unfolded
+
+  function togglePanels() {
+    const leftPanel = document.querySelector('.left-panel');
+    const rightPanel = document.querySelector('.right-panel');
+    const centerPanel = document.querySelector('.center-panel');
+
+    if (isFolded) {
+      // if the brochure is folded, unfold it by showing the left and right panels
+	  leftPanel.style.transform = 'rotateY(0deg)';
+      rightPanel.style.transform = 'rotateY(0deg)';
+      isFolded = false;
+    } else {
+      // if the brochure is unfolded, fold it by hiding the left and right panels
+	  leftPanel.style.transform = 'rotateY(-180deg)';
+      rightPanel.style.transform = 'rotateY(-180deg)';
+      isFolded = true;
+    }
+  }
+</script>
+</body>
+</html>
