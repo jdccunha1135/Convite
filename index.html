@@ -11,14 +11,17 @@
   }
   
   .allPage{
-	display: table-cell;
+	text-align: center;
+    display: table-cell;
     height: 100vh;
+    width: 100vw;
     vertical-align: middle;
   }
   .brochure {
     display: flex;
 	align-items: center;
     justify-content: center;
+	height:100vh;
   }
   .left-panel {
     height: 100%;
@@ -78,6 +81,15 @@
 	max-height:100%;
     object-fit: contain;
   }
+  
+  @media (pointer: coarse)  {
+	.brochure {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height:auto;
+  }
+}
 </style>
 <body>
 <div class="allPage">
