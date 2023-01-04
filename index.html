@@ -10,18 +10,32 @@
     padding: 0;
   }
   
+  body{
+	background-image:url("Background.png") ;
+	background-size:800px;
+    background-repeat:repeat;
+	overflow-y:hidden;
+	
+  }
+  
   .allPage{
 	text-align: center;
     display: table-cell;
     height: 100vh;
     width: 100vw;
     vertical-align: middle;
+	background: linear-gradient(90deg, rgba(218,247,238,0.2) 0%, rgba(246,254,251,0.05) 100%);
   }
   .brochure {
     display: flex;
 	align-items: center;
     justify-content: center;
 	height:100vh;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+              0 2px 2px rgba(0,0,0,0.12), 
+              0 4px 4px rgba(0,0,0,0.12), 
+              0 8px 8px rgba(0,0,0,0.12),
+              0 16px 16px rgba(0,0,0,0.12);
   }
   .left-panel {
     height: 100%;
