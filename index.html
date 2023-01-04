@@ -41,7 +41,6 @@
 	transform:rotateY(-180deg);
 	transform-style: preserve-3d;
 	transition: 1s;
-	/*backface-visibility: hidden;*/
 	transform-origin:left;
   }
   .left-panel:after {
@@ -51,6 +50,10 @@
     position: absolute;
     top: 0px;
     left: 0px;
+	transform:rotateY(180deg);
+	transform-style: preserve-3d;
+	transition: 1s;
+	backface-visibility: hidden;
     -webkit-transform: rotateY( 180deg );
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
@@ -66,6 +69,10 @@
     position: absolute;
     top: 0px;
     left: 0px;
+	transform:rotateY(180deg);
+	transform-style: preserve-3d;
+	transition: 1s;
+	backface-visibility: hidden;
     -webkit-transform: rotateY( 180deg );
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
