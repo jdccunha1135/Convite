@@ -19,8 +19,14 @@
   }
   
   .allPage{
+	flex-direction: column;
+    flex-basis: content;
+    flex-wrap: wrap;
+    max-height: 100vh;
+    align-items: center;
+    justify-content: center;
 	text-align: center;
-    display: table-cell;
+    display: flex;
     height: 100vh;
     width: 100vw;
     vertical-align: middle;
@@ -28,16 +34,14 @@
   }
   .brochure {
     display: flex;
-	align-items: center;
-    justify-content: center;
-	height:100vh;
+	max-height:100%;
   }
   .left-panel {
     height: 100%;
     visibility: visible; /* hide left panel by default */
 	transform:rotateY(-180deg);
 	transform-style: preserve-3d;
-	transition: 2s;
+	transition: 1s;
 	/*backface-visibility: hidden;*/
 	transform-origin:right;
   }
@@ -49,7 +53,7 @@
     visibility: visible; /* hide right panel by default */
 	transform:rotateY(-180deg);
 	transform-style: preserve-3d;
-	transition: 2s;
+	transition: 1s;
 	transform-origin:left;
   }
   .left-panel:after {
@@ -61,7 +65,7 @@
     left: 0px;
 	transform:rotateY(180deg);
 	transform-style: preserve-3d;
-	transition: 2s;
+	transition: 1s;
 	backface-visibility: hidden;
     -webkit-transform: rotateY( 180deg );
     -webkit-transform-style: preserve-3d;
@@ -80,7 +84,7 @@
     left: 0px;
 	transform:rotateY(180deg);
 	transform-style: preserve-3d;
-	transition: 2s;
+	transition: 1s;
 	backface-visibility: hidden;
     -webkit-transform: rotateY( 180deg );
     -webkit-transform-style: preserve-3d;
@@ -98,14 +102,7 @@
     object-fit: contain;
   }
   
-  @media (pointer: coarse)  {
-	.brochure {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height:auto;
-	}
-  }
+  
 }
 </style>
 <body>
