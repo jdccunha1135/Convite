@@ -6,6 +6,7 @@
 <head>
 <title>Daniela & João</title>
 <link rel="icon" href="Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 <style>
   html, body {
     margin: 0;
@@ -20,21 +21,25 @@
 	
   }
   
+  .gradient{
+	background: linear-gradient(180deg, rgba(218,247,238,0.3) 0%, rgba(246,254,251,0.3) 100%);
+  }
+  
   .allPage{
+	transition:1s;
 	padding-top: 20px;
     padding-bottom: 20px;
 	flex-direction: column;
     flex-basis: content;
     flex-wrap: wrap;
-    max-height: 100vh;
+    max-height: 80vh;
     align-items: center;
     justify-content: center;
 	text-align: center;
     display: flex;
-    height: calc(100vh - 40px);
+    height: calc(80vh - 40px);
     width: 100vw;
     vertical-align: middle;
-	background: linear-gradient(180deg, rgba(218,247,238,0.3) 0%, rgba(246,254,251,0.3) 100%);
   }
   .brochure {
 	margin-left: 10px;
@@ -109,43 +114,218 @@
     object-fit: contain;
   }
   
+  .countdownContainer{
+	gap:20px;
+    display:flex;
+	font-family: 'Dancing Script', cursive;
+	flex-direction:column;
+	font-size:30px;
+	height:20vh;
+	width:100vw;
+	justify-content:center;
+	align-items:center;
+	transition:1s;
+	background: linear-gradient(180deg, rgba(218,247,238,0.8) 0%, rgba(246,254,251,0.8) 100%);
+  }
+  
+  .countdownFiller{
+	display:inline-flex;
+	gap:10px;
+	align-items: center;
+	padding: 0px 20px;
+  }
+  
+  .countdownFiller p{
+	font-size:40px;
+	filter:drop-shadow(0px 0px 2px rgba(0,0,0,0.5));
+	//border:2px solid #eac3be;
+	margin:0px;
+	padding: 30px 10px;
+	text-align: center;
+    width: 100px;
+	font-family: 'Dancing Script', cursive;
+	background-image: url("Padrao.png");
+	background-position: center;
+	background-size: cover; /*or contain */
+  }
+  
+  .containerDate{
+	gap: 10px;
+    display: flex;
+	align-items:center;
+	justify-content:center;
+}
+
+	.containerDate p{
+		margin:0px;
+	}
+
+	#textDate{
+		font-size:40px;
+	}
+	
+	.flourImage{
+		width:70px;
+		height:auto;
+	}
+	
+	.flourImage:last-child{
+		transform:scaleX(-1);
+	}
+
+  
+  
+  
+  #demo{
+	background-color:white;
+  }
+
+  
+  @media (pointer:none), (pointer:coarse) {
+	.gradient, .countdownContainer, .allPage {
+		display:grid;
+	}
+	
+	.countdownContainer, .allPage {
+		grid-row:1;
+		grid-column:1;
+	}
+	
+	.countdownContainer{
+		height:40vh;
+		background:none;
+	}
+	
+	.allPage{
+		height:100vh;
+		max-height:100vh;
+	}
+	
+	.containerDate{
+		align-self: baseline;
+	}
+	
+	.countdownFiller{
+		align-self: end;
+	}
+	
+}
+  
+  
   
 }
 </style>
 <body>
-<div class="allPage">
-	<div class="brochure" onclick="togglePanels()">
-	  <div class="left-panel">
-		<img src="Esquerda.png">
-	  </div>
-	  <div class="center-panel">
-		<img src="Centro.png">
-	  </div>
-	  <div class="right-panel">
-		<img src="Direita.png">
-	  </div>
+<div class = "gradient">
+	<div class="countdownContainer">
+		<div class = "countdownFiller">
+			<!--<p id="demo"></p>-->
+			<p id="day"></p>
+			<p id="hour"></p>
+			<p id="minute"></p>
+			<p id="second"></p>
+		</div>
+		<div class="containerDate">
+			<img class = "flourImage" src = "Flor.png">
+			<p>16</p>
+			<p id="textDate"> de setembro de </p>
+			<p>2023</p>
+			<img class = "flourImage" src = "Flor.png">
+		</div>
+	</div>
+	<div class="allPage">
+		<div class="brochure" onclick="togglePanels()">
+		  <div class="left-panel">
+			<img src="Esquerda.png">
+		  </div>
+		  <div class="center-panel">
+			<img src="Centro.png">
+		  </div>
+		  <div class="right-panel">
+			<img src="Direita.png">
+		  </div>
+		</div>
 	</div>
 </div>
 <script>
   let isFolded = true; // keep track of whether the brochure is folded or unfolded
 
   function togglePanels() {
+	const allPageDiv = document.querySelector('.allPage');
     const leftPanel = document.querySelector('.left-panel');
     const rightPanel = document.querySelector('.right-panel');
     const centerPanel = document.querySelector('.center-panel');
+	const countdown = document.querySelector('.countdownContainer');
 
     if (isFolded) {
       // if the brochure is folded, unfold it by showing the left and right panels
 	  leftPanel.style.transform = 'rotateY(0deg)';
       rightPanel.style.transform = 'rotateY(0deg)';
+	  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+		  // true for mobile device
+		  
+		}else{
+		  // false for not mobile device
+		  countdown.style.setProperty('height','0px');
+		  countdown.style.setProperty('opacity','0');
+		  allPageDiv.style.setProperty('height','calc(100vh - 40px)')
+		  allPageDiv.style.setProperty('max-height','100vh')
+		}
       isFolded = false;
     } else {
       // if the brochure is unfolded, fold it by hiding the left and right panels
 	  leftPanel.style.transform = 'rotateY(-180deg)';
       rightPanel.style.transform = 'rotateY(-180deg)';
+	  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+		  // true for mobile device
+		  
+		}else{
+		  // false for not mobile device
+		  countdown.style.setProperty('height','20vh');
+		  countdown.style.setProperty('opacity','1');
+		  allPageDiv.style.setProperty('height','calc(80vh - 40px)')
+		  allPageDiv.style.setProperty('max-height','80vh')
+		}
       isFolded = true;
     }
   }
+  
+  var countDownDate = new Date("Sept 16, 2023 14:00:00").getTime();
+  
+  function countdownFunction() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  //document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  //+ minutes + "m " + seconds + "s ";
+  document.getElementById("day").innerHTML = days + "d ";
+  document.getElementById("hour").innerHTML = hours + "h ";
+  document.getElementById("minute").innerHTML = minutes + "m ";
+  document.getElementById("second").innerHTML = seconds + "s ";
+  
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}
+
+	countdownFunction();
+
+	// Update the count down every 1 second
+	var x = setInterval(countdownFunction, 1000);
 </script>
 </body>
 </html>
