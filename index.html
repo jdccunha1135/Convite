@@ -132,7 +132,6 @@
 	display:inline-flex;
 	gap:10px;
 	align-items: center;
-	padding: 0px 20px;
   }
   
   .countdownFiller p{
@@ -182,18 +181,27 @@
 
   
   @media (pointer:none), (pointer:coarse) {
-	.gradient, .countdownContainer, .allPage {
-		display:grid;
-	}
-	
-	.countdownContainer, .allPage {
-		grid-row:1;
-		grid-column:1;
-	}
 	
 	.countdownContainer{
+		position:absolute;
 		height:40vh;
 		background:none;
+		gap:0px;
+		
+	}
+	
+	.countdownFiller, .containerDate {
+		width:100%;
+		justify-content: center;
+		background: linear-gradient(180deg, rgba(218,247,238,0.8) 100%, rgba(218,247,238,0.8) 100%);
+	}
+	
+	.countdownFiller{
+		padding-top: 20px;
+	}
+	
+	.containerDate{
+		padding-bottom: 20px;
 	}
 	
 	.allPage{
@@ -201,13 +209,6 @@
 		max-height:100vh;
 	}
 	
-	.containerDate{
-		align-self: baseline;
-	}
-	
-	.countdownFiller{
-		align-self: end;
-	}
 	
 }
   
