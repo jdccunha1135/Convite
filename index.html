@@ -46,8 +46,34 @@
     margin-right: 10px;
     display: flex;
 	max-height:100%;
-	filter:drop-shadow(0px 0px 20px rgba(0,0,0,1))
+	filter:drop-shadow(0px 0px 20px rgba(0,0,0,1));
+	transform-style: preserve-3d;
+	transition: 1s;
+    -webkit-transform-style: preserve-3d;
   }
+  
+  .brochure:after {
+	z-index:1 !important;
+    content: '';
+    right: calc(25%);
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: calc(25%);
+	transition: 1s;
+	transform:rotateY(180deg);
+	transform-style: preserve-3d;
+    -webkit-transform: rotateY( 180deg );
+    -webkit-transform-style: preserve-3d;
+	background-image:url("CostasConvite.png");
+	background-size: contain;
+    background-repeat: no-repeat;
+}
+
+	.brochure-closed:after{
+		z-index:-1 !important;
+	}
+  
   .left-panel {
     height: 100%;
     visibility: visible; /* hide left panel by default */
@@ -60,6 +86,8 @@
   .center-panel {
     height: 100%;
   }
+  
+  
   .right-panel {
     height: 100%;
     visibility: visible; /* hide right panel by default */
@@ -179,6 +207,18 @@
   #demo{
 	background-color:white;
   }
+  
+  .flipInvite{
+	transition:0.2s;
+	margin-bottom:10px;
+	height:2vh;
+	text-align:center;
+	font-size:30px;
+	color:black;
+	font-family: 'Dancing Script', cursive;
+	position:absolute;
+	z-index:10;
+  }
 
   
   @media (pointer:none), (pointer:coarse) {
@@ -235,8 +275,11 @@
 			<img class = "flourImage" src = "Flor.png">
 		</div>
 	</div>
+	<div class ="flipInvite" onclick="toggleFlip()">
+		<p style = "margin:0px">Virar</p>
+	</div>
 	<div class="allPage">
-		<div class="brochure" onclick="togglePanels()">
+		<div class="brochure brochure-closed" onclick="togglePanels()">
 		  <div class="left-panel">
 			<img src="Esquerda.png">
 		  </div>
@@ -251,6 +294,24 @@
 </div>
 <script>
   let isFolded = true; // keep track of whether the brochure is folded or unfolded
+  let isFlipped = false;
+  
+  function toggleFlip() {
+	console.log('flip');
+	const brochure = document.querySelector('.brochure');
+	const flipInvite = document.querySelector('.flipInvite');
+	if(isFlipped){
+		brochure.setAttribute("onclick","togglePanels();");
+		brochure.classList.add('brochure-closed');
+		brochure.style.transform = 'rotateY(0deg)';
+		isFlipped = false;
+	}else{
+		brochure.removeAttribute("onclick");
+		brochure.classList.remove('brochure-closed');
+		brochure.style.transform = 'rotateY(-180deg)';
+		isFlipped = true;
+	}
+  }
 
   function togglePanels() {
 	const allPageDiv = document.querySelector('.allPage');
@@ -258,6 +319,7 @@
     const rightPanel = document.querySelector('.right-panel');
     const centerPanel = document.querySelector('.center-panel');
 	const countdown = document.querySelector('.countdownContainer');
+	const flipInvite = document.querySelector('.flipInvite');
 
     if (isFolded) {
       // if the brochure is folded, unfold it by showing the left and right panels
@@ -270,6 +332,8 @@
 		  // false for not mobile device
 		  countdown.style.setProperty('height','0px');
 		  countdown.style.setProperty('opacity','0');
+		  //flipInvite.style.setProperty('height','0px');
+		  flipInvite.style.setProperty('opacity','0');
 		  allPageDiv.style.setProperty('height','calc(100vh - 40px)')
 		  allPageDiv.style.setProperty('max-height','100vh')
 		}
@@ -285,6 +349,8 @@
 		  // false for not mobile device
 		  countdown.style.setProperty('height','20vh');
 		  countdown.style.setProperty('opacity','1');
+		  //flipInvite.style.setProperty('height','2vh');
+		  flipInvite.style.setProperty('opacity','1');
 		  allPageDiv.style.setProperty('height','calc(80vh - 40px)')
 		  allPageDiv.style.setProperty('max-height','80vh')
 		}
@@ -322,9 +388,15 @@
     clearInterval(x);
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
+  
 }
 
 	countdownFunction();
+	const topElement = document.querySelector('.center-panel').getBoundingClientRect().bottom;
+	const rightElement = document.querySelector('.center-panel').getBoundingClientRect().right;
+	console.log(topElement,rightElement);
+	document.querySelector('.flipInvite').style.top = topElement - 50 + "px";
+	document.querySelector('.flipInvite').style.left = rightElement - 70 + "px";
 
 	// Update the count down every 1 second
 	var x = setInterval(countdownFunction, 1000);
