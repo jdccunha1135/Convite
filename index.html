@@ -334,6 +334,7 @@
 		  countdown.style.setProperty('opacity','0');
 		  //flipInvite.style.setProperty('height','0px');
 		  flipInvite.style.setProperty('opacity','0');
+		  flipInvite.removeAttribute("onclick");
 		  allPageDiv.style.setProperty('height','calc(100vh - 40px)')
 		  allPageDiv.style.setProperty('max-height','100vh')
 		}
@@ -351,6 +352,7 @@
 		  countdown.style.setProperty('opacity','1');
 		  //flipInvite.style.setProperty('height','2vh');
 		  flipInvite.style.setProperty('opacity','1');
+		  flipInvite.setAttribute("onclick","toggleFlip();");
 		  allPageDiv.style.setProperty('height','calc(80vh - 40px)')
 		  allPageDiv.style.setProperty('max-height','80vh')
 		}
