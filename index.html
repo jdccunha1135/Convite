@@ -392,13 +392,12 @@
   }
   
 }
-
-	window.addEventListener('DOMContentLoaded', (event) => {
+	window.onload = function() {
 		const topElement = document.querySelector('.center-panel').getBoundingClientRect().bottom;
 		const rightElement = document.querySelector('.center-panel').getBoundingClientRect().right;
 		document.querySelector('.flipInvite').style.top = topElement - 50 + "px";
 		document.querySelector('.flipInvite').style.left = rightElement - 70 + "px";
-	});
+	};
 
 	countdownFunction();
 
