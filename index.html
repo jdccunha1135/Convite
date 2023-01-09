@@ -327,7 +327,8 @@
       rightPanel.style.transform = 'rotateY(0deg)';
 	  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
 		  // true for mobile device
-		  
+		  flipInvite.style.setProperty('opacity','0');
+		  flipInvite.removeAttribute("onclick");
 		}else{
 		  // false for not mobile device
 		  countdown.style.setProperty('height','0px');
@@ -345,7 +346,8 @@
       rightPanel.style.transform = 'rotateY(-180deg)';
 	  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
 		  // true for mobile device
-		  
+		  flipInvite.style.setProperty('opacity','1');
+		  flipInvite.setAttribute("onclick","toggleFlip();");
 		}else{
 		  // false for not mobile device
 		  countdown.style.setProperty('height','20vh');
