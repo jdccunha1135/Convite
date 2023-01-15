@@ -32,12 +32,12 @@
 	flex-direction: column;
     flex-basis: content;
     flex-wrap: wrap;
-    max-height: 80vh;
+    max-height: 85vh;
     align-items: center;
     justify-content: center;
 	text-align: center;
     display: flex;
-    height: calc(80vh - 40px);
+    height: calc(85vh - 40px);
     width: 100vw;
     vertical-align: middle;
   }
@@ -45,7 +45,7 @@
 	margin-left: 10px;
     margin-right: 10px;
     display: flex;
-	max-height:100%;
+	max-height:90%;
 	filter:drop-shadow(0px 0px 20px rgba(0,0,0,1));
 	transform-style: preserve-3d;
 	transition: 1s;
@@ -148,7 +148,7 @@
 	font-family: 'Dancing Script', cursive;
 	flex-direction:column;
 	font-size:30px;
-	height:20vh;
+	height:15vh;
 	width:100vw;
 	justify-content:center;
 	align-items:center;
@@ -211,13 +211,16 @@
   .flipInvite{
 	transition:0.2s;
 	margin-bottom:10px;
-	height:2vh;
+	height:40px;
 	text-align:center;
 	font-size:30px;
 	color:black;
 	font-family: 'Dancing Script', cursive;
 	position:absolute;
 	z-index:10;
+	background: linear-gradient(180deg, rgba(218,247,238,0.8) 0%, rgba(246,254,251,0.8) 100%);
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.2));
+	padding: 0px 20px;
   }
 
   
@@ -320,6 +323,7 @@
     const centerPanel = document.querySelector('.center-panel');
 	const countdown = document.querySelector('.countdownContainer');
 	const flipInvite = document.querySelector('.flipInvite');
+	const brochure = document.querySelector('.brochure');
 
     if (isFolded) {
       // if the brochure is folded, unfold it by showing the left and right panels
@@ -338,6 +342,8 @@
 		  flipInvite.removeAttribute("onclick");
 		  allPageDiv.style.setProperty('height','calc(100vh - 40px)')
 		  allPageDiv.style.setProperty('max-height','100vh')
+		  brochure.style.setProperty('max-height','100%')
+		  
 		}
       isFolded = false;
     } else {
@@ -350,13 +356,14 @@
 		  flipInvite.setAttribute("onclick","toggleFlip();");
 		}else{
 		  // false for not mobile device
-		  countdown.style.setProperty('height','20vh');
+		  countdown.style.setProperty('height','15vh');
 		  countdown.style.setProperty('opacity','1');
 		  //flipInvite.style.setProperty('height','2vh');
 		  flipInvite.style.setProperty('opacity','1');
 		  flipInvite.setAttribute("onclick","toggleFlip();");
-		  allPageDiv.style.setProperty('height','calc(80vh - 40px)')
-		  allPageDiv.style.setProperty('max-height','80vh')
+		  allPageDiv.style.setProperty('height','calc(85vh - 40px)')
+		  allPageDiv.style.setProperty('max-height','85vh')
+		  brochure.style.setProperty('max-height','90%')
 		}
       isFolded = true;
     }
@@ -397,8 +404,9 @@
 	window.onload = function() {
 		const topElement = document.querySelector('.center-panel').getBoundingClientRect().bottom;
 		const rightElement = document.querySelector('.center-panel').getBoundingClientRect().right;
-		document.querySelector('.flipInvite').style.top = topElement - 50 + "px";
-		document.querySelector('.flipInvite').style.left = rightElement - 70 + "px";
+		const leftElement = document.querySelector('.center-panel').getBoundingClientRect().left;
+		document.querySelector('.flipInvite').style.top = topElement + 20 + "px";
+		document.querySelector('.flipInvite').style.left = rightElement - ((rightElement-leftElement)/2) - 52.5 + 'px';
 	};
 
 	countdownFunction();
