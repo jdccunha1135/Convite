@@ -60,7 +60,7 @@
     position: absolute;
     top: 0px;
     left: calc(25%);
-	transition: 1s;
+	transition: 0.5s;
 	transform:rotateY(180deg);
 	transform-style: preserve-3d;
     -webkit-transform: rotateY( 180deg );
@@ -222,6 +222,58 @@
     filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.2));
 	padding: 0px 20px;
   }
+  
+  @-webkit-keyframes fadeIn { 
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+  
+  100%{
+	opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+  
+  100%{
+	opacity: 1;
+  }
+}
+  
+  .blink_me:hover .left-panel {
+	-webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 1.2s;
+  animation-name: fadeIn;
+  animation-duration: 1.2s ;
+  animation-iteration-count: infinite;
+  }
+  
+  .blink_me:hover  .left-panel:after{
+	backface-visibility: visible;
+  }	
+  
+  .blink_me:hover  .right-panel {
+	-webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 1.2s;
+  animation-name: fadeIn;
+  animation-duration: 1.2s ;
+  animation-iteration-count: infinite;
+  }
+  
+  .blink_me:hover .right-panel:after{
+	backface-visibility: visible;
+  }	
 
   
   @media (pointer:none), (pointer:coarse) {
@@ -306,13 +358,15 @@
 	const flipInvite = document.querySelector('.flipInvite');
 	if(isFlipped){
 		brochure.setAttribute("onclick","togglePanels();");
-		brochure.classList.add('brochure-closed');
 		brochure.style.transform = 'rotateY(0deg)';
+		brochure.classList.add('brochure-closed');
 		isFlipped = false;
 	}else{
 		brochure.removeAttribute("onclick");
-		brochure.classList.remove('brochure-closed');
 		brochure.style.transform = 'rotateY(-180deg)';
+		setTimeout( function(){
+			brochure.classList.remove('brochure-closed');
+		},200);
 		isFlipped = true;
 	}
   }
@@ -346,6 +400,7 @@
 		  brochure.style.setProperty('max-height','100%')
 		  
 		}
+		brochure.classList.remove("blink_me");
       isFolded = false;
     } else {
       // if the brochure is unfolded, fold it by hiding the left and right panels
@@ -367,10 +422,15 @@
 		  brochure.style.setProperty('max-height','90%')
 		}
       isFolded = true;
+	  setTimeout( function(){
+        brochure.classList.add("blink_me");
+		},1000);
     }
   }
-  
+  const brochure = document.querySelector('.brochure');
   var countDownDate = new Date("Sept 16, 2023 14:00:00").getTime();
+  const centerPanel = document.querySelector('.center-panel');
+  brochure.classList.add("blink_me");
   
   function countdownFunction() {
 
