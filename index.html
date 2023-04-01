@@ -253,9 +253,9 @@
   
   .blink_me:hover .left-panel {
 	-webkit-animation-name: fadeIn;
-  -webkit-animation-duration: 1.2s;
+  -webkit-animation-duration: 3s;
   animation-name: fadeIn;
-  animation-duration: 1.2s ;
+  animation-duration: 3s ;
   animation-iteration-count: infinite;
   }
   
@@ -265,15 +265,42 @@
   
   .blink_me:hover  .right-panel {
 	-webkit-animation-name: fadeIn;
-  -webkit-animation-duration: 1.2s;
+  -webkit-animation-duration: 3s;
   animation-name: fadeIn;
-  animation-duration: 1.2s ;
+  animation-duration: 3s ;
   animation-iteration-count: infinite;
   }
   
   .blink_me:hover .right-panel:after{
 	backface-visibility: visible;
   }	
+  
+    .blink_me:hover .center-panel {
+	-webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 3s;
+  animation-name: pulse;
+  animation-duration: 3s ;
+  animation-iteration-count: infinite;
+  }
+  
+  
+  
+  @keyframes pulse {
+	0% {
+		
+		box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0);
+	}
+
+	50% {
+		
+		box-shadow: 0 0 30px 15px rgba(255, 255, 255, 1);
+	}
+	
+	100% {
+		
+		box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0);
+	}
+}
 
   
   @media (pointer:none), (pointer:coarse) {
@@ -306,17 +333,39 @@
 		max-height:100vh;
 	}
 	
-	  .blink_me:hover .left-panel {
-		-webkit-animation-name: none;
-		animation-name: none;
-
-	}
+	  
+	  .blink_me .left-panel {
+	-webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 5s;
+  animation-name: fadeIn;
+  animation-duration: 5s ;
+  animation-iteration-count: infinite;
+  }
   
+  .blink_me  .left-panel:after{
+	backface-visibility: visible;
+  }	
+ 
+  .blink_me  .right-panel {
+	-webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 5s;
+  animation-name: fadeIn;
+  animation-duration: 5s ;
+  animation-iteration-count: infinite;
+  }
   
-	  .blink_me:hover  .right-panel {
-		-webkit-animation-name: none;
-		animation-name: none;
-	  }
+  .blink_me .right-panel:after{
+	backface-visibility: visible;
+  }	
+  
+    .blink_me .center-panel {
+	-webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 5s;
+  animation-name: pulse;
+  animation-duration: 5s ;
+  animation-iteration-count: infinite;
+  }
+  
 	
 	
 }
