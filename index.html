@@ -359,12 +359,29 @@
   }	
   
     .blink_me .center-panel {
-	-webkit-animation-name: fadeIn;
+	-webkit-animation-name: pulse;
   -webkit-animation-duration: 5s;
   animation-name: pulse;
   animation-duration: 5s ;
   animation-iteration-count: infinite;
   }
+  
+    @keyframes pulse {
+	0% {
+		
+		box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0);
+	}
+
+	50% {
+		
+		box-shadow: 0 0 30px 20px rgba(255, 255, 255, 1);
+	}
+	
+	100% {
+		
+		box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0);
+	}
+}
   
 	
 	
